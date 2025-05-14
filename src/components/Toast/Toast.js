@@ -18,7 +18,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ variant = "notice", children }) {
+function Toast({ variant = "notice", setToasts, id, children }) {
   const [isVisible, setIsVisible] = React.useState(true);
   if (!isVisible) {
     return null;
@@ -48,7 +48,12 @@ function Toast({ variant = "notice", children }) {
       <p className={styles.content}>{children}</p>
       <button
         className={styles.closeButton}
-        onClick={() => setIsVisible(false)}
+        onClick={() => {
+          setIsVisible(false);
+          setToasts((toasts) => {
+            return toasts.filter((toast) => toast.id !== id);
+          });
+        }}
       >
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>

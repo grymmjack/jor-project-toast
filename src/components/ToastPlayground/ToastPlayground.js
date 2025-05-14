@@ -24,10 +24,10 @@ function ToastPlayground() {
           setToasts((toasts) => [
             ...toasts,
             {
-              isVisible: true,
               id: crypto.randomUUID(),
               variant,
               message,
+              setToasts,
             },
           ]);
         }}
