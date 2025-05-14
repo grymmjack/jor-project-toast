@@ -18,7 +18,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ variant = "notice", setToasts, id, children }) {
+function Toast({ variant = "notice", id, removeToast, children }) {
   const [isVisible, setIsVisible] = React.useState(true);
   if (!isVisible) {
     return null;
@@ -50,9 +50,7 @@ function Toast({ variant = "notice", setToasts, id, children }) {
         className={styles.closeButton}
         onClick={() => {
           setIsVisible(false);
-          setToasts((toasts) => {
-            return toasts.filter((toast) => toast.id !== id);
-          });
+          removeToast(id);
         }}
       >
         <X size={24} />
