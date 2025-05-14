@@ -47,6 +47,8 @@ function Toast({ variant = "notice", id, removeToast, children }) {
       </div>
       <p className={styles.content}>{children}</p>
       <button
+        aria-label="Dismiss message"
+        aria-live="off"
         className={styles.closeButton}
         onClick={() => {
           setIsVisible(false);
