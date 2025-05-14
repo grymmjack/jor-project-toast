@@ -7,21 +7,6 @@ import styles from "./ToastShelf.module.css";
 function ToastShelf() {
   const { toasts, removeToast } = React.useContext(ToastContext);
 
-  // ESC key event listener to remove toasts
-  React.useEffect(() => {
-    function handleKeyDown(event) {
-      if (event.key === "Escape") {
-        for (let i = 0; i < toasts.length; i++) {
-          removeToast(toasts[i].id);
-        }
-      }
-    }
-    window.addEventListener("keydown", (event) => handleKeyDown(event));
-    return () => {
-      window.removeEventListener("keydown", (event) => handleKeyDown(event));
-    };
-  }, [toasts, removeToast]);
-
   // Auto-remove toasts after 5 seconds
   React.useEffect(() => {
     const timer = setTimeout(() => {
